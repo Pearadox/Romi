@@ -1,0 +1,1 @@
+This is a test project for developing a command based project for the arm kit while also helping me get more familiar with git. Use at your own risk
