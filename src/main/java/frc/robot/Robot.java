@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -51,7 +52,12 @@ public class Robot extends TimedRobot {
   public void disabledInit() {}
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    
+    SmartDashboard.putNumber("Arm Pos",  RobotContainer.arm.get_armPos());
+    SmartDashboard.putNumber("Gripper Pos", RobotContainer.arm.get_armPos());
+    SmartDashboard.putNumber("Wrist Pos", RobotContainer.arm.get_armPos());
+  }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
@@ -81,7 +87,11 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    SmartDashboard.putNumber("Arm Pos",  RobotContainer.arm.get_armPos());
+    SmartDashboard.putNumber("Gripper Pos", RobotContainer.arm.get_armPos());
+    SmartDashboard.putNumber("Wrist Pos", RobotContainer.arm.get_armPos());
+  }
 
   @Override
   public void testInit() {

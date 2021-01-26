@@ -6,9 +6,18 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.CloseGripper;
+import frc.robot.commands.Forward;
+import frc.robot.commands.LowerArm;
+import frc.robot.commands.LowerWrist;
+import frc.robot.commands.OpenGripper;
+import frc.robot.commands.RaiseArm;
+import frc.robot.commands.RaiseWrist;
+import frc.robot.subsystems.RomiArm;
 import frc.robot.subsystems.RomiDrivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -18,9 +27,8 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final RomiDrivetrain m_romiDrivetrain = new RomiDrivetrain();
-
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_romiDrivetrain);
+  public final static RomiDrivetrain chassis = new RomiDrivetrain();
+  public final static RomiArm arm = new RomiArm();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -34,7 +42,15 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    SmartDashboard.putData("Forward", new Forward(10));
+    SmartDashboard.putData("CloseGripper", new CloseGripper());
+    SmartDashboard.putData("OpenGripper", new OpenGripper());
+    SmartDashboard.putData("LowerArm", new LowerArm());
+    SmartDashboard.putData("RaiseArm", new RaiseArm());
+    SmartDashboard.putData("LowerWrist", new LowerWrist());
+    SmartDashboard.putData("RaiseWrist", new RaiseWrist());
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -43,6 +59,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return new PrintCommand("Auton message");
   }
 }
