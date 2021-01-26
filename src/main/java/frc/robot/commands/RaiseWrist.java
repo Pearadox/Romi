@@ -6,17 +6,17 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.RomiArm;
+import frc.robot.subsystems.RomiWrist;
 
 public class RaiseWrist extends CommandBase {
-  private final RomiArm m_arm;
+  private final RomiWrist mWrist;
 
   private double m_delta = 0.005;
 
   /** Creates a new RaiseArm. */
   public RaiseWrist() {
-    m_arm = RobotContainer.arm;
-    addRequirements(m_arm);
+    mWrist = RobotContainer.wrist;
+    addRequirements(mWrist);
 
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -29,7 +29,7 @@ public class RaiseWrist extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {    
-    m_arm.incrementWrist(m_delta);
+    mWrist.incrementWrist(m_delta);
   }
 
   // Called once the command ends or is interrupted.

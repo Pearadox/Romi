@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -44,7 +45,20 @@ public class Robot extends TimedRobot {
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
+
     CommandScheduler.getInstance().run();
+
+    
+    var batteryVoltage = RobotController.getBatteryVoltage();
+    SmartDashboard.putNumber("Arm Pos",  RobotContainer.arm.get_armPos());
+    SmartDashboard.putNumber("Wrist Pos", RobotContainer.wrist.get_wristPos());
+    SmartDashboard.putNumber("Gripper Pos", RobotContainer.gripper.get_gripperPos());
+
+    SmartDashboard.putNumber("Arm Angle",  RobotContainer.arm.getArmAngle());
+    SmartDashboard.putNumber("Wrist Angle", RobotContainer.wrist.getwristAngle());
+    SmartDashboard.putNumber("Gripper Angle", RobotContainer.gripper.getGripperAngle());
+
+    SmartDashboard.putNumber("Battery Voltage", batteryVoltage);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -54,9 +68,6 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     
-    SmartDashboard.putNumber("Arm Pos",  RobotContainer.arm.get_armPos());
-    SmartDashboard.putNumber("Gripper Pos", RobotContainer.arm.get_armPos());
-    SmartDashboard.putNumber("Wrist Pos", RobotContainer.arm.get_armPos());
   }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
@@ -88,9 +99,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    SmartDashboard.putNumber("Arm Pos",  RobotContainer.arm.get_armPos());
-    SmartDashboard.putNumber("Gripper Pos", RobotContainer.arm.get_armPos());
-    SmartDashboard.putNumber("Wrist Pos", RobotContainer.arm.get_armPos());
   }
 
   @Override

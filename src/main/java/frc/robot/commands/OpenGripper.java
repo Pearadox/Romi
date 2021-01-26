@@ -6,17 +6,17 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.RomiArm;
+import frc.robot.subsystems.RomiGripper;
 
 public class OpenGripper extends CommandBase {
-  private final RomiArm m_arm;
+  private final RomiGripper mGripper;
 
   private double m_delta = 0.005;
 
   /** Creates a new OpenGripper. */
   public OpenGripper() {
-    m_arm = RobotContainer.arm;
-    addRequirements(m_arm);
+    mGripper = RobotContainer.gripper;
+    addRequirements(mGripper);
 
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -29,7 +29,7 @@ public class OpenGripper extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {    
-    m_arm.incrementGripper(-m_delta);
+    mGripper.incrementGripper(-m_delta);
   }
 
   // Called once the command ends or is interrupted.

@@ -8,32 +8,37 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class RomiArm extends SubsystemBase {
+public class RomiGripper extends SubsystemBase {
 
-  private final Servo m_arm = new Servo(Constants.ARM);
-  private double m_liftPos;
+  private final Servo m_gripper = new Servo(Constants.GRIPPER);
+  private double m_gripperPos;
 
-  /** Creates a new RomiArm. */
-  public RomiArm() {
+  /** Creates a new RomiGripper. */
+  public RomiGripper() {
     reset();
   }
 
   public void reset() {
-    m_liftPos = 0.5;
+    m_gripperPos = 0.5;
 
-    m_arm.set(m_liftPos);
+    m_gripper.set(m_gripperPos);
   }
 
-  public void incrementArm(double delta) {
+  public void incrementGripper(double delta) {
     /* Spec: https://www.pololu.com/docs/0J76/4
-     * Range should be 1000 (raised) - 1900 (lowered) us 
-     */
-    m_liftPos = saturateLimit(m_liftPos + delta, 0 ,.45); 
-    m_arm.set(m_liftPos);
+     * Range should be 500 (open) - 2400 (closed) us 
+     * AnalogIn range right now from 440 - 1850.
+    */
+    m_gripperPos = saturateLimit(m_gripperPos + delta, 0, 1); 
+    m_gripper.set(m_gripperPos);
+  }
+  
+  public double get_gripperPos() {
+    return m_gripperPos;
   }
 
-  public double get_armPos() {
-    return m_liftPos;
+  public double getGripperAngle(){
+    return m_gripper.getAngle();
   }
 
   public double saturateLimit(double val, double l_limit, double u_limit) {
@@ -46,10 +51,6 @@ public class RomiArm extends SubsystemBase {
     return outval;
   }
 
-  public double getArmAngle(){
-    return m_arm.getAngle();
-  }
-  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

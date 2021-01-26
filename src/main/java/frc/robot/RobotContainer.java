@@ -16,6 +16,8 @@ import frc.robot.commands.RaiseArm;
 import frc.robot.commands.RaiseWrist;
 import frc.robot.subsystems.RomiArm;
 import frc.robot.subsystems.RomiDrivetrain;
+import frc.robot.subsystems.RomiGripper;
+import frc.robot.subsystems.RomiWrist;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 
@@ -29,6 +31,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final static RomiDrivetrain chassis = new RomiDrivetrain();
   public final static RomiArm arm = new RomiArm();
+  public final static RomiGripper gripper = new RomiGripper();
+  public final static RomiWrist wrist = new RomiWrist();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
